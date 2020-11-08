@@ -1,12 +1,18 @@
 version: '3.3'
 services:
     turnej-db:
-        image: postgres:latest
+        image: postgres:13
+        restart: always
+        container_name: turnej-db
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: turnej
         ports:
             - "5432:5432"
-        container_name: postgres
-        voluems:
-            - ./db:/usr/src/turnej/db
+        volumes:
+            - ./db/init/create.sql:/docker-entrypoint-initdb.d/1-create.sql
+            - ./db/seeds/basic-seed.sql:/docker-entrypoint-initdb.d/2-basic-seed.sql
     turnej-server:
         build:
             context: ./server
