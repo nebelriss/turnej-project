@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"name": "turnej",
+		"path": "turnej"
+	},
+	{
+		"name": "turnej-server",
+		"path": "turnej-server"
+	}
+],
+  "settings": {}
+}

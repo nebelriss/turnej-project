@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+    turnej-db:
+        image: postgres:latest
+        ports:
+            - "5432:5432"
+        container_name: postgres
+        voluems:
+            - ./db:/usr/src/turnej/db
+    turnej-server:
+        build:
+            context: ./server
+        ports:
+            - "3001:3001"
+        container_name: turnej-server
+        volumes:
+            - ./server:/usr/src/turnej/server
+            - /usr/src/app/node_modules
