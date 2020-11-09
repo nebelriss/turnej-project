@@ -19,8 +19,8 @@ git clone https://github.com/nebelriss/turnej-server.git server
 echo "done"
 
 # gui:
-echo "getting web-ui"
-git clone https://github.com/nebelriss/turnej.git web-ui
+echo "getting web-client"
+git clone https://github.com/nebelriss/turnej.git web-client
 echo "done"
 
 # api-docs
