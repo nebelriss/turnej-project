@@ -1,7 +1,7 @@
 db
 server
 api-docs
-web-client
+webclient
 libs
 
 DS_STORE

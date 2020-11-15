@@ -20,7 +20,7 @@ echo "done"
 
 # gui:
 echo "getting web-client"
-git clone https://github.com/nebelriss/turnej.git web-client
+git clone https://github.com/nebelriss/turnej.git webclient
 echo "done"
 
 # api-docs
