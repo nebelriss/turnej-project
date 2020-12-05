@@ -1,26 +1,39 @@
 version: "3.8"
 services:
-  turnej-server:
+  server:
     build:
       context: ./server
     depends_on:
-      - turnej-db
+      - db
+    network_mode: bridge
     ports:
       - "3001:3001"
-    container_name: turnej-server
+    links:
+      - db:db
     volumes:
       - ./server:/usr/src/turnej/server
       - /usr/src/turnej/server/node_modules
-  turnej-db:
+  pdadmin:
+    image: dpage/pgadmin4
+    network_mode: bridge
+    links:
+      - db:db
+    depends_on:
+      - db
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@test.com
+      - PGADMIN_DEFAULT_PASSWORD=postgres
+    ports:
+      - "3232:80"
+    restart: always
+  db:
     image: postgres:13
     restart: always
-    container_name: turnej-db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: turnej
-    ports:
-      - "5432:5432"
+    network_mode: bridge
     volumes:
       - ./db/init/create.sql:/docker-entrypoint-initdb.d/1-create.sql
       - ./db/seeds/basic-seed.sql:/docker-entrypoint-initdb.d/2-basic-seed.sql
